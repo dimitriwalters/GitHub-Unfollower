@@ -21,7 +21,8 @@ if __name__ == '__main__':
     print('\n\n')
 
     for following in gitUser.get_user().get_following():
-        print('Checking Github ID: {} and Github Name: {}'.format(following.id, following.name))
+        name = following.name.encode('utf-8') if following.name else ''
+        print('Checking Github ID: {} and Github Name: {}'.format(following.id, name))
         if following.id not in followers:
             gitUser.get_user().remove_from_following(following)
-            print('Github user with ID: {} and Name: {} is not following you and automaticaly unfollowed by this script'.format(following.id, following.name))
+            print('Github user with ID: {} and Name: {} is not following you and automaticaly unfollowed by this script'.format(following.id, name))
